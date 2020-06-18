@@ -4,6 +4,8 @@ import axios from "axios";
 
 import styled from "styled-components";
 
+import { Link } from "react-router-dom";
+
 import Spinner from "react-bootstrap/Spinner";
 
 const Card = styled.div`
@@ -39,6 +41,18 @@ const TYPE_COLORS = {
   steel: "B5B5C3",
   water: "3295F6",
 };
+
+const StyledLink = styled(Link)`
+  tex-decoration: none;
+  color: black;
+  &:focus,
+  &:hover,
+  &:visited,
+  &:link,
+  &:active {
+    text-decoration: none;
+  }
+`;
 
 export default class Pokemon extends Component {
   state = {
@@ -403,24 +417,31 @@ export default class Pokemon extends Component {
                 </div>
               </Card>
               <Card className="card">
-                <div className="listMoves">
-                  <div className="card-body mx-auto">
-                    <div className="col"></div>
-                    {this.state.moves.map((move) => (
-                      <Card className="card">
-                        <h6 className="card-title">
-                          {move
-                            .toLowerCase()
-                            .split(" ")
-                            .map(
-                              (letter) =>
-                                letter.charAt(0).toUpperCase() +
-                                letter.substring(1)
-                            )
-                            .join(" ")}
-                        </h6>
-                      </Card>
-                    ))}
+                <div className="card-body">
+                  <div className="listMoves">
+                    <div className="card-body mx-auto">
+                      <React.Fragment>
+                        {this.state.moves.map((move) => (
+                          <div className="row align-items-center">
+                            <div class="col py-1 px-md-5">
+                              <Card className="card">
+                                <h6 className="card-title">
+                                  {move
+                                    .toLowerCase()
+                                    .split(" ")
+                                    .map(
+                                      (letter) =>
+                                        letter.charAt(0).toUpperCase() +
+                                        letter.substring(1)
+                                    )
+                                    .join(" ")}
+                                </h6>
+                              </Card>
+                            </div>
+                          </div>
+                        ))}
+                      </React.Fragment>
+                    </div>
                   </div>
                 </div>
               </Card>
